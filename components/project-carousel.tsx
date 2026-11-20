@@ -58,14 +58,14 @@ function ProjectSlide({ project, index, total }: { project: Project; index: numb
   return (
     <article className="relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/8 bg-[#111F33] shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
       <div className={`absolute inset-0 opacity-80 ${accent.glow}`} aria-hidden="true" />
-      <div className="relative grid h-full lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="flex min-h-0 flex-col p-6 sm:p-8 lg:p-10">
+      <div className="relative grid h-full grid-rows-[max-content_minmax(0,1fr)] lg:grid-cols-[1.08fr_0.92fr] lg:grid-rows-1">
+        <div className="flex flex-col p-5 sm:p-8 lg:min-h-0 lg:p-10">
           <div className="flex items-start justify-between gap-4">
             <span className={`flex size-12 items-center justify-center rounded-2xl border ${accent.icon}`}>
               <Icon className="size-6" aria-hidden="true" />
             </span>
-            <div className="flex items-center gap-3">
-              <span className={`rounded-full border px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.15em] ${accent.badge}`}>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className={`rounded-full border px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] sm:px-3 sm:tracking-[0.15em] ${accent.badge}`}>
                 {project.status}
               </span>
               <span className="font-mono text-[0.68rem] tabular-nums text-slate-500">
@@ -74,7 +74,7 @@ function ProjectSlide({ project, index, total }: { project: Project; index: numb
             </div>
           </div>
 
-          <div className="mt-8 lg:mt-10">
+          <div className="mt-7 sm:mt-8 lg:mt-10">
             <p className={`font-mono text-[0.66rem] uppercase tracking-[0.2em] ${accent.label}`}>
               Cloud deployment case study
             </p>
@@ -86,11 +86,11 @@ function ProjectSlide({ project, index, total }: { project: Project; index: numb
             </p>
           </div>
 
-          <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap gap-2 sm:mt-7">
             {project.technologies.map((technology) => (
               <span
                 key={technology}
-                className="inline-flex items-center gap-2 rounded-full border border-white/7 bg-[#08111F]/65 px-3 py-1.5 text-xs text-slate-300"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/7 bg-[#08111F]/65 px-2.5 py-1.5 text-xs text-slate-300 sm:gap-2 sm:px-3"
               >
                 <BrandIcon name={technology} className="size-3.5 shrink-0" />
                 {technology}
@@ -124,7 +124,7 @@ function ProjectSlide({ project, index, total }: { project: Project; index: numb
           )}
         </div>
 
-        <div className="relative border-t border-white/8 bg-[#08111F]/45 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
+        <div className="relative min-h-0 border-t border-white/8 bg-[#08111F]/45 p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-10">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:28px_28px]" aria-hidden="true" />
           <div className="relative">
             <div className="flex items-center justify-between gap-4">
@@ -194,6 +194,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
         onChange={setActiveIndex}
         baseWidth="100%"
         minHeight={690}
+        viewportHeight="var(--project-card-height)"
         aspectRatio={1.65}
         peek={34}
         gap={18}
@@ -206,7 +207,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
         loop={false}
         draggable
         ariaLabel="Selected cloud and DevOps projects"
-        className="px-1 sm:px-3"
+        className="project-carousel px-1 sm:px-3"
         style={
           {
             "--carousel-tile": "#111F33",

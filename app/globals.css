@@ -76,6 +76,10 @@ button {
   animation: blink 1s steps(1) infinite;
 }
 
+.project-carousel {
+  --project-card-height: 58rem;
+}
+
 @keyframes blink {
   50% { opacity: 0; }
 }
@@ -83,6 +87,16 @@ button {
 @media (min-width: 640px) {
   .site-container {
     width: min(100% - 3rem, 76rem);
+  }
+
+  .project-carousel {
+    --project-card-height: 50rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .project-carousel {
+    --project-card-height: 43.125rem;
   }
 }
 

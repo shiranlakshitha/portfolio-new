@@ -52,6 +52,7 @@ export interface CarouselProps {
   initialIndex?: number;
   activeIndex?: number;
   minHeight?: number;
+  viewportHeight?: CSSProperties['height'];
   ariaLabel?: string;
   theme?: 'dark' | 'light';
   onChange?: (index: number) => void;
@@ -350,6 +351,7 @@ export default function Carousel({
   initialIndex = 0,
   activeIndex,
   minHeight = 0,
+  viewportHeight,
   ariaLabel = 'Carousel',
   theme = 'dark',
   onChange,
@@ -382,7 +384,7 @@ export default function Carousel({
   const slot = Math.max(40, width - side * 2);
   const diameter = frame ? slot : Math.min(slot, slot / ratio);
   const cardWidth = round ? diameter : slot;
-  const cardHeight = round ? diameter : Math.max(minHeight, slot / ratio);
+  const cardHeight = viewportHeight ?? (round ? diameter : Math.max(minHeight, slot / ratio));
   const clipped = !frame && !stacked;
   const bleed = clipped ? Math.round(Math.min(48, cardWidth * 0.12)) : 0;
   const inset = bleed + (width - cardWidth) / 2;
